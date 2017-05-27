@@ -16,13 +16,10 @@ public class Run implements PageProcessor {
         //判断链接是否符合http://www.cnblogs.com/任意个数字字母-/p/7个数字.html格式
         if(!page.getUrl().regex("http://www.cnblogs.com/[a-z 0-9 -]+/p/[0-9]{7}.html").match()){
             //加入满足条件的链接
-            page.addTargetRequests(
-                    page.getHtml().xpath("//*[@id=\"post_list\"]/div/div[@class='post_item_body']/h3/a/@href").all());
+            page.addTargetRequests(page.getHtml().xpath("//*[@id=\"post_list\"]/div/div[@class='post_item_body']/h3/a/@href").all());
         }else{
             //获取页面需要的内容
-            System.out.println("抓取的内容："+
-                    page.getHtml().xpath("//*[@id=\"Header1_HeaderTitle\"]/text()").get()
-            );
+            System.out.println("抓取的内容："+ page.getHtml().xpath("//*[@id=\"Header1_HeaderTitle\"]/text()").get());
             count ++;
         }
     }
